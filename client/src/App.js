@@ -1,18 +1,27 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  withRouter
+} from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 
 import Login from "./components/Login";
 import "./styles.scss";
 import BubblePage from "./components/BubblePage";
 
-function App() {
+function App(props) {
+  const onLogOut = () => {
+    localStorage.removeItem("token");
+    props.history.replace("/");
+  };
   return (
     <Router>
       <div className="App">
         <div>
-          <NavLink exact to="/">
-            Log In
+          <NavLink exact to="/" onClick={onLogOut}>
+            Log Out
           </NavLink>
         </div>
         <div>
@@ -31,4 +40,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);
