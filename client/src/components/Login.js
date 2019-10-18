@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState} from "react";
+import axiosWithAuth from "./axiosWithAuth";
+
 
 // make a post request to retrieve a token from the api
 // when you have handled the token, navigate to the BubblePage route
@@ -24,9 +26,9 @@ export default function Login(props) {
 
     axiosWithAuth()
       .post("/login", postCredentials)
-      .then(res => {
+      .then(res => { console.log(res)
         localStorage.setItem("token", res.data.payload);
-        props.history.push("/friends");
+        // props.history.push("/");
       })
       .catch(error => {
         console.log(error);
@@ -39,12 +41,11 @@ export default function Login(props) {
   return (
     <div>
       <div className="App">
-        <h1> Please Sign In </h1>
+        <h2> Please Sign In </h2>
 
         <form onSubmit={handleSubmit}>
           <div>
             <label>Username </label>
-            <br />
             <input
               type="text"
               name="username"
@@ -52,10 +53,8 @@ export default function Login(props) {
               value={state.username}
             />
           </div>
-          <br />
           <div>
             <label>Password </label>
-            <br />
             <input
               type="text"
               name="password"
