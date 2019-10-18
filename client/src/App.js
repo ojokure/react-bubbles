@@ -6,6 +6,7 @@ import {
   withRouter
 } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
+import styled from "styled-components";
 
 import Login from "./components/Login";
 import "./styles.scss";
@@ -19,16 +20,23 @@ function App(props) {
   return (
     <Router>
       <div className="App">
-        <div>
-          <NavLink exact to="/" onClick={onLogOut}>
-            Log Out
-          </NavLink>
-        </div>
-        <div>
-          <NavLink exact to="/colors">
-            BubblePage
-          </NavLink>
-        </div>
+        <StyledDiv>
+          <div>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+          </div>
+          <div>
+            <NavLink exact to="/" onClick={onLogOut}>
+              Log Out
+            </NavLink>
+          </div>
+          <div>
+            <NavLink exact to="/colors">
+              BubblePage
+            </NavLink>
+          </div>
+        </StyledDiv>
         <Route exact path="/" component={Login} />
         {/* 
           Build a PrivateRoute component that will 
@@ -41,3 +49,8 @@ function App(props) {
 }
 
 export default withRouter(App);
+
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
