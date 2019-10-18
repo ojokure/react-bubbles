@@ -18,7 +18,6 @@ const ColorList = ({ colors, updateColors }) => {
   };
   const saveEdit = e => {
     e.preventDefault();
-    // think about where will you get the id from...
     // where is is saved right now?
     let selectedColor = colors.find(color => color.id === colorToEdit.id);
     axiosWithAuth()
