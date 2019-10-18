@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 
 import Login from "./components/Login";
@@ -10,6 +10,16 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <div>
+          <NavLink exact to="/">
+            Log In
+          </NavLink>
+        </div>
+        <div>
+          <NavLink exact to="/colors">
+            BubblePage
+          </NavLink>
+        </div>
         <Route exact path="/" component={Login} />
         {/* 
           Build a PrivateRoute component that will 
