@@ -8,7 +8,7 @@ const initialColor = {
   code: { hex: "" }
 };
 
-const ColorList = ( { colors, updateColors}) => {
+const ColorList = ({ colors, updateColors }) => {
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
@@ -33,12 +33,13 @@ const ColorList = ( { colors, updateColors}) => {
 
   const deleteColor = color => {
     // make a delete request to delete this color
-    let selectedColor = colors.find(color => color.id === colorToEdit.id);
 
-   axiosWithAuth().delete(`http://localhost:5000/api/colors/${selectedColor.id}`)
-      updateColors(colors.filter(color => color.id !== selectedColor.id)
+    axiosWithAuth()
+      .delete(`http://localhost:5000/api/colors/${color.id}`)
 
-      )
+      .then(res =>
+        updateColors(colors.filter(color => color.id !== res.data))
+      );
   };
 
   return (
@@ -50,7 +51,7 @@ const ColorList = ( { colors, updateColors}) => {
             <span>
               <span className="delete" onClick={() => deleteColor(color)}>
                 x
-              </span>{" "}
+              </span>
               {color.color}
             </span>
             <div
